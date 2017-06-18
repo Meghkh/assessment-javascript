@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Practice JavaScript</title>
   <link rel="stylesheet" href="static/styles.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 
@@ -135,6 +136,10 @@
 <script>
   "use strict";
   // code here for above problem
+
+  $(".find-me").on("click", function () { 
+      alert("Pop-up alert box!");
+    });
 </script>
 
 <div class="hint">
@@ -160,13 +165,23 @@
 
 <fieldset>
   <img src="http://mytrial.typepad.com/.a/6a0147e199a17d970b0153906b3209970b-pi"
-      id="cute-porcupine-image" style="display: none">
+      id="cute-porcupine-image" atr="" style="display: none">
   <input type="button" id="make-a-porcupine" value="I Want a Porcupine!">
 </fieldset>
 
 <script>
   "use strict";
   // put your code here
+
+  function showPorcupine(evt) {
+    var img = $("#cute-porcupine-image");
+    console.log('You\'ll need to wait a second.');
+    // found resource online explaining that optional slow/fast parameter req
+    // for show/hide to use delay, but can't relocate it
+    img.delay(1000).slideDown(3000).show('slow');
+  }
+
+  $("#make-a-porcupine").on("click", showPorcupine);
 </script>
 
 <div class="hint">
@@ -198,6 +213,15 @@
 <script>
   "use strict";
   // put your code here
+
+  function beAgreeable (evt) {
+      evt.preventDefault();
+
+      var favFood = $('#favorite-food-input').val();
+      $("#agreeable-text").html('<p>I like ' + favFood + ', too!</p>');
+    }
+
+  $("#agreeable-form").on("submit", beAgreeable);
 </script>
 
 <div class="hint">
