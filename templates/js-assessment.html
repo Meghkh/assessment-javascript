@@ -73,7 +73,7 @@
 <script>
   "use strict";
   // code here for above problem
-  var preventBtn = document.getElementById('prevent-form-submission-button');
+  var preventForm = document.getElementById('prevent-form-submission-form');
 
   function showAlert(evt) {
     evt.preventDefault();
@@ -81,7 +81,7 @@
     alert('Just an Alert!');
   }
 
-  preventBtn.addEventListener('click', showAlert);
+  preventForm.addEventListener('submit', showAlert);
 </script>
 
 <div class="hint">
