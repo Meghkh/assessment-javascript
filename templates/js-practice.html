@@ -37,6 +37,9 @@
 <script>
   "use strict";
   // code here for above problem
+  var popUpButton = document.getElementById('popup-alert-button');
+
+  popUpButton.addEventListener('click', function () {alert('This is a pop-up alert.');});
 </script>
 
 
@@ -79,7 +82,26 @@
   "use strict";
 
   // code here for the above problem
+  var multButton = document.getElementById('multiply-btn');
 
+  function showMultiples (evt) {
+    evt.preventDefault();
+
+    var multsOf = Number(document.getElementById('mults-of').value);
+    var multsMax = Number(document.getElementById('max').value);
+
+    var arrOfMults = [];
+    for (var i = 1; i <= multsMax; i++) {
+      if (i % multsOf === 0) {
+        arrOfMults.push(i);
+      }
+    }
+    console.log(arrOfMults);
+  }
+
+  multButton.addEventListener('click', showMultiples);
+
+  
 </script>
 
 <div class="hint">
