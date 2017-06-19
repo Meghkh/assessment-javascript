@@ -6,6 +6,7 @@ the assessment!
 
 from random import randint
 from flask import Flask, request, jsonify, render_template
+import json
 
 app = Flask(__name__)
 
@@ -49,7 +50,6 @@ def get_puppies():
     #package everything up in a dictionary, jsonify it, and return it
     result_data = {"url": puppy_url}
     return jsonify(result_data)
-
 
 
 @app.route("/t-rex-attack.json", methods=["POST"])

@@ -298,6 +298,7 @@
   function showPuppies(results) {
     //get the URL for the puppy photo out of the results object
     var puppyURL = results.url;
+    console.log(puppyURL);
 
     //create a new img element and set its source to be the puppy URL
     var puppyPhoto = $("<img>").attr("src", puppyURL);
@@ -309,6 +310,15 @@
 
   // put your code here
 
+  function processPuppies(evt) {
+    evt.preventDefault();
+    console.log(evt.data);
+    // set #num-puppies 
+    $.get('/puppies.json', showPuppies(evt));
+    console.log('requested info to show puppies');
+  }
+
+  $('#puppy-form').on('submit', processPuppies);
 </script>
 
 <div class="hint">

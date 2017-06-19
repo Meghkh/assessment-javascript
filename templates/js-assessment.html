@@ -283,15 +283,7 @@
       guessForm.on('submit', {number: randomNum}, gameTime);
     }
 
-  // function stopFormStartPlay () {
-  //     playBtn.setAttribute('disabled', 'false');
-  //     guess.attr('disabled', 'disabled');
-  //     guessBtn.attr('disabled', 'disabled');
-  //   }
-
   playBtn.on('click', startGame);
-  // guessForm.on('click', stopFormStartPlay);
-
 </script>
 
 
@@ -358,7 +350,13 @@
   }
 
   // put your code here
+  function processResults (evt) {
+    evt.preventDefault();
 
+    $.post('/t-rex-attack.json', evt.data, showTRexResults);
+  }
+
+  $('#t-rex-form').on('submit', processResults);
 </script>
 
 <div class="hint">
