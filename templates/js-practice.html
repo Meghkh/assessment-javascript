@@ -314,7 +314,7 @@
     evt.preventDefault();
     console.log(evt.data);
     // set #num-puppies 
-    $.get('/puppies.json', showPuppies(evt));
+    $.get('/puppies.json', {}, showPuppies);
     console.log('requested info to show puppies');
   }
 

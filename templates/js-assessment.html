@@ -353,7 +353,11 @@
   function processResults (evt) {
     evt.preventDefault();
 
-    $.post('/t-rex-attack.json', evt.data, showTRexResults);
+    var formInputs = {
+      "attack-target": $("#t-rex-target").val(),
+    };
+
+    $.post("/t-rex-attack.json", formInputs, showTRexResults);
   }
 
   $('#t-rex-form').on('submit', processResults);
