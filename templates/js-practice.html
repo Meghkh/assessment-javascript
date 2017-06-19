@@ -312,9 +312,11 @@
 
   function processPuppies(evt) {
     evt.preventDefault();
-    console.log(evt.data);
+
     // set #num-puppies 
-    $.get('/puppies.json', {}, showPuppies);
+    var formInputs = $("#num-puppies").serialize();
+
+    $.get('/puppies.json', formInputs, showPuppies);
     console.log('requested info to show puppies');
   }
 
