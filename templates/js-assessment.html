@@ -5,6 +5,7 @@
   <title>Skills JavaScript</title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="static/styles.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body class="container">
 
@@ -106,16 +107,19 @@
 
 //  Here's a stub of a function you can use!
 
-//  function reverseString(evt) {
-//    var msg = "Porcupines are cute";
-//
-//    // do some stuff here to reverse that string into a new variable
-//    var newMsg = "This should be the reversed string";
-//
-//    alert(newMsg);
-//  }
+ function reverseString(evt) {
+   var msg = "Porcupines are cute".split('').reverse();
+   var newMsg = msg.join('');
 
+   // do some stuff here to reverse that string into a new variable
+   for (var i = 1; i <= (msg.length); i++) {
+      newMsg.concat(msg[-i]);
+    }
+   alert(newMsg);
+ }
 
+  var reverseStrBtn = document.getElementById('reverse-string-button');
+  reverseStrBtn.addEventListener('click', reverseString);
 </script>
 
 <h3>Sum to n</h3>
@@ -137,6 +141,30 @@
   "use strict";
   // code here for above problem
   // if user enters 5, result will be 1 + 2 + 3 + 4 + 5 = 15
+
+  function sumN (evt) {
+    evt.preventDefault();
+
+    var n = Number(document.getElementById('sum-to-n-field').value);
+    var spanResult = document.getElementById('sum-to-n-result');
+    var sumResult = 0;
+    var msgResult = '';
+
+    for (var i = 1; i <= n; i++) {
+        sumResult += i;
+        if (i < n) {
+            msgResult = msgResult.concat(String(i) + ' + ');
+          }
+        else {
+            msgResult = msgResult.concat(String(n) + ' = ');
+          }
+        // console.log(msgResult + String(sumResult));
+      }
+      spanResult.innerHTML = '<p>' + msgResult + String(sumResult) + '</p>';
+  }
+
+  var sumToNForm = document.getElementById('sum-to-n');
+  sumToNForm.addEventListener('submit', sumN);
 
 </script>
 
@@ -169,6 +197,11 @@
 <script>
   "use strict";
   // put your code here
+
+  $('#kittenz-rule').on('click', function () {
+      $('img#kittenz-rule').attr('src', 'http://www.cutestpaw.com/wp-content/uploads/2011/11/Two-Litte-Dog.jpg');
+    });
+
 </script>
 
 <div class="hint">
@@ -200,6 +233,65 @@
 <script>
   "use strict";
   // put your code here
+
+  // get play button
+  // add event listener, on click
+  //  - fn: disable play button, enable form, pick randomint 1-100
+  //  - get msg div id, get guess from user, check guess
+  //  - if number is correct
+  //    - congratulate player, disable form, enable play button
+  //  - else: display hi/low message
+
+  var playBtn = $('#play-guessing-game');
+  var guessBtn = $('#try-this-number');
+  var guessField = $('#number-guessed');
+
+  function gameTime (evt) {
+      evt.preventDefault();
+
+      var numToGuess = evt.data.number;
+      var gameMsg = $('#number-guessing-msg');
+      var numGuessed = Number(guessField.val());
+
+      // console.log(numToGuess);
+      // console.log(numGuessed);
+
+      if (numGuessed === numToGuess) {
+          gameMsg.html('<p>Congratulations! You guessed it!</p>');
+          playBtn.attr('disabled', false);
+          guessField.attr('disabled', 'disabled');
+          guessBtn.attr('disabled', 'disabled');
+        }
+      else {
+          if (numGuessed > numToGuess) {
+              gameMsg.html('<p>Too high! Guess lower!</p>');
+            }
+          else {
+              gameMsg.html('<p>Too low! Guess higher!</p>');
+            }
+        }
+    }
+
+  function startGame () {
+      playBtn.attr('disabled', 'disabled');
+      guessField.attr('disabled', false);
+      guessBtn.attr('disabled', false);
+
+      var guessForm = $('#guessing-game-form');
+      var randomNum = 1 + Math.floor(Math.random() * 100);
+
+      guessForm.on('submit', {number: randomNum}, gameTime);
+    }
+
+  // function stopFormStartPlay () {
+  //     playBtn.setAttribute('disabled', 'false');
+  //     guess.attr('disabled', 'disabled');
+  //     guessBtn.attr('disabled', 'disabled');
+  //   }
+
+  playBtn.on('click', startGame);
+  // guessForm.on('click', stopFormStartPlay);
+
 </script>
 
 
